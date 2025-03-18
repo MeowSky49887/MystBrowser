@@ -1,0 +1,25 @@
+{
+  "name": "mystbrowser",
+  "version": "2026.2.1",
+  "description": "MystBrowser is a lightweight, Electron-based multi-window browser designed for enhanced productivity and customization. It provides users with the ability to open multiple browser windows while integrating advanced window management features.",
+  "main": "index.js",
+  "author": "MeowSkyKung",
+  "license": "CC-BY-SA-4.0",
+  "devDependencies": {
+    "@electron/packager": "19.0.5",
+    "@tailwindcss/cli": "4.1.18",
+    "daisyui": "5.5.18",
+    "electron": "40.0.0",
+    "node-addon-api": "8.3.0",
+    "node-gyp": "12.2.0",
+    "tailwindcss": "4.1.18"
+  },
+  "dependencies": {
+    "bindings": "1.5.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dev": "node-gyp rebuild --directory ./MystWin && npx @tailwindcss/cli -i ./libs/tailwind.config.css -o ./libs/tailwind.custom.css && electron .",
+    "build": "node-gyp rebuild --directory ./MystWin && npx @tailwindcss/cli -i ./libs/tailwind.config.css -o ./libs/tailwind.custom.css && powershell -ExecutionPolicy Bypass -File ./build.ps1"
+  }
+}

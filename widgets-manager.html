@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>MystBrowser</title>
+
+        <link href="./libs/tailwind.custom.css" rel="stylesheet" type="text/css" />
+
+        <link href="./libs/overlayscrollbars.css" rel="stylesheet" type="text/css" />
+        <script src="./libs/overlayscrollbars.browser.es6.min.js" defer></script>
+
+        <style>
+            @layer properties, theme, base, components, utilities, override;
+
+            @media (prefers-color-scheme: light) {
+                
+            }
+
+            @media (prefers-color-scheme: dark) {
+                
+            }
+
+            @font-face {
+                font-family: 'Material Symbols Outlined';
+                font-style: normal;
+                src: url('./libs/MaterialSymbolsOutlined.ttf') format('truetype');
+            }
+
+            .tab::before {
+                --radius-start: radial-gradient(circle at top left, var(--tab-radius-grad)) !important; --radius-end: radial-gradient(circle at top right, var(--tab-radius-grad)) !important;
+            }
+
+            .tab {
+                transition: transform 160ms cubic-bezier(.2,.8,.2,1);
+                will-change: transform;
+            }
+
+            .tab.dragging {
+                position: absolute;
+                top: 0;
+                pointer-events: none;
+                z-index: 1000;
+            }
+
+            .material-symbols-outlined {
+                font-family: 'Material Symbols Outlined';
+                font-weight: normal;
+                font-style: normal;
+                font-size: 24px;
+                display: inline-block;
+                line-height: 1;
+                text-transform: none;
+                letter-spacing: normal;
+                word-wrap: normal;
+                white-space: nowrap;
+                direction: ltr;
+            }
+        </style>
+    </head>
+    <body class="bg-base-300 text-base-content flex flex-col items-center justify-center p-0 m-0 overflow-hidden">
+        <!-- Navigation Bar -->
+        <div class="w-full! h-[40px]! flex items-center px-4 space-x-2 bg-base-200 shadow-md">
+            <button class="btn btn-sm btn-ghost" onclick="window.electronAPI.manageWidgets(false)"><span class="material-symbols-outlined">menu</span></button>
+            <button class="btn btn-sm btn-ghost" onclick="window.electronAPI.uploadWidget()"><span class="material-symbols-outlined">drive_folder_upload</span></button>
+        </div>
+
+        <div id="list" class="w-screen h-[calc(100vh-40px)] px-12 py-8 overflow-y-auto relative bg-base-300 flex flex-col" data-overlayscrollbars-y>
+
+        </div>
+
+        <template>
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend">Enable</legend>
+                <input type="checkbox" class="toggle" data-enable />
+            </fieldset>
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend">Attach</legend>
+                <select class="select text-xs" data-attach>
+                    <option value="None">Detach Window</option>
+                    <option value="Wallpaper">Wallpaper Layer</option>
+                    <option value="Desktop">Desktop Layer</option>
+                    <option value="Top">Always On Top</option>
+                </select>
+            </fieldset>
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend">Position</legend>
+                <div class="grid grid-cols-2 gap-2">
+                    <label class="input">
+                        <span>X</span>
+                        <input type="number" placeholder="X" class="text-xs" data-position-x>
+                    </label>
+                    <label class="input">
+                        <span>y</span>
+                        <input type="number" placeholder="Y" class="text-xs" data-position-y>
+                    </label>
+                </div>
+            </fieldset>
+            <fieldset class="fieldset">
+                <legend class="fieldset-legend">Size</legend>
+                <div class="grid grid-cols-2 gap-2">
+                    <label class="input">
+                        <span>W</span>
+                        <input type="number" placeholder="W" class="text-xs" data-size-w>
+                    </label>
+                    <label class="input">
+                        <span>H</span>
+                        <input type="number" placeholder="H" class=" text-xs" data-size-h>
+                    </label>
+                </div>
+            </fieldset>
+        </template>
+
+        <script>
+            let widgetsList = document.getElementById("list");
+
+            electronAPI.onWidgetUpdate((info) => {
+                if (info && Object.entries(info).length > 0) {
+                    let entries = Object.entries(info);
+                    let aliveIds = new Set(entries.map(([id]) => `Widget-${id}`));
+                    [...widgetsList.children].forEach(widget => {
+                        if (!aliveIds.has(widget.id)) {
+                            widget.remove();
+                        }
+                    });
+                    entries.forEach(([id, dict], index) => {
+                        let widget = document.getElementById(`Widget-${id}`);
+
+                        if (!widget) {
+                            widget = document.createElement("details");
+                            widget.id = `Widget-${id}`;
+                            widget.className = "collapse collapse-close collapse-arrow bg-base-100 border-base-300 border w-full h-fit";
+
+                            let title = document.createElement("summary");
+                            title.innerText = dict["folder"];
+                            title.className = "collapse-title";
+
+                            let detail = document.createElement("div");
+                            detail.className = "collapse-content px-10 flex flex-col";
+
+                            let template = document.getElementsByTagName("template")[0];
+                            let clone = template.content.cloneNode(true);
+
+                            let enable = clone.querySelector("[data-enable]");
+                            if (dict["enable"]) enable.setAttribute("checked", "checked")
+
+                            let positionX = clone.querySelector("[data-position-x]");
+                            positionX.value = dict["positionX"];
+
+                            let positionY = clone.querySelector("[data-position-y]");
+                            positionY.value = dict["positionY"];
+
+                            let sizeW = clone.querySelector("[data-size-w]");
+                            sizeW.value = dict["sizeW"];
+
+                            let sizeH = clone.querySelector("[data-size-h]");
+                            sizeH.value = dict["sizeH"];
+
+                            let attach = clone.querySelector("[data-attach]");
+                            attach.value = dict["attach"];
+
+                            let button = document.createElement("div");
+                            button.className = "mt-4 place-self-end";
+
+                            let save = document.createElement("button");
+                            save.className = "btn btn-md btn-info ml-2";
+                            save.innerText = "Save";
+                            save.addEventListener("click", function() {
+                                window.electronAPI.saveWidget(id, enable.checked, parseInt(positionX.value) || 100, parseInt(positionY.value) || 100, parseInt(sizeW.value) || 800, parseInt(sizeH.value) || 600, attach.value);
+                            });
+
+                            let remove = document.createElement("button");
+                            remove.className = "btn btn-md btn-error mr-2";
+                            remove.innerText = "Delete";
+                            remove.addEventListener("click", function() {
+                                window.electronAPI.destroyWidget(id);
+                            });
+
+                            button.appendChild(remove);
+                            button.appendChild(save);
+
+                            detail.appendChild(clone);
+                            detail.appendChild(button);
+
+                            widget.appendChild(title);
+                            widget.appendChild(detail);
+
+                            widgetsList.appendChild(widget);
+                        }
+                    });
+                } else {
+                    widgetsList.innerHTML = "";
+                }
+            });
+        </script>
+        
+        <script type="module">
+            var { 
+                OverlayScrollbars, 
+                ScrollbarsHidingPlugin, 
+                SizeObserverPlugin, 
+                ClickScrollPlugin  
+            } = OverlayScrollbarsGlobal;
+
+            document.querySelectorAll("[data-overlayscrollbars]").forEach((element) => {
+                OverlayScrollbars(
+                    element,
+                    {
+                        overflow: {},
+                        update: {
+                            elementEvents: [['textarea', 'input']],
+                            debounce: [0, 0]
+                        }
+                    }
+                );
+            });
+
+            document.querySelectorAll("[data-overlayscrollbars-x]").forEach((element) => {
+                OverlayScrollbars(
+                    element,
+                    {
+                        overflow: { y: "hidden" },
+                        update: {
+                            elementEvents: [['textarea', 'input']],
+                            debounce: [0, 0]
+                        }
+                    }
+                );
+            });
+
+            document.querySelectorAll("[data-overlayscrollbars-y]").forEach((element) => {
+                OverlayScrollbars(
+                    element,
+                    {
+                        overflow: { x: "hidden" },
+                        update: {
+                            elementEvents: [['textarea', 'input']],
+                            debounce: [0, 0]
+                        }
+                    }
+                );
+            });
+        </script>
+    </body>
+</html>
