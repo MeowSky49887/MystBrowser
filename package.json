@@ -1,6 +1,6 @@
 {
   "name": "mystbrowser",
-  "version": "2026.2.1",
+  "version": "2026.10.1",
   "description": "MystBrowser is a lightweight, Electron-based multi-window browser designed for enhanced productivity and customization. It provides users with the ability to open multiple browser windows while integrating advanced window management features.",
   "main": "index.js",
   "author": "MeowSkyKung",
@@ -15,7 +15,9 @@
     "tailwindcss": "4.1.18"
   },
   "dependencies": {
-    "bindings": "1.5.0"
+    "bindings": "1.5.0",
+    "electron-edge-js": "^42.0.0",
+    "systeminformation": "^5.31.6"
   },
   "scripts": {
     "start": "electron .",

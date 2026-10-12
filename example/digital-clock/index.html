@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="th">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Digital Clock</title>
+
+        <style>
+            body {
+                margin: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: rgba(0, 0, 0, 0);
+                font-family: Arial, sans-serif;
+                color: white;
+            }
+
+            .clock-box {
+                width: 440px;
+                text-align: center;
+                padding: 30px 50px;
+                border-radius: 20px;
+                background: rgba(255, 255, 255, 0.6);
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            }
+
+            .time {
+                font-size: 64px;
+                font-weight: bold;
+                letter-spacing: 3px;
+            }
+
+            .date {
+                margin-top: 16px;
+                font-size: 24px;
+                color: #eeeeee;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="clock-box">
+            <div class="time" id="time">00:00:00</div>
+            <div class="date" id="date">01/01/2009</div>
+        </div>
+
+        <script>
+            function updateClock() {
+            const now = new Date();
+
+            // เวลาแบบ 24 ชั่วโมง
+            let hours = String(now.getHours()).padStart(2, '0');
+            let minutes = String(now.getMinutes()).padStart(2, '0');
+            let seconds = String(now.getSeconds()).padStart(2, '0');
+
+            // วันเดือนปี
+            let day = String(now.getDate()).padStart(2, '0');
+            let month = String(now.getMonth() + 1).padStart(2, '0');
+            let year = now.getFullYear();
+
+            document.getElementById('time').textContent =
+                `${hours}:${minutes}:${seconds}`;
+
+            document.getElementById('date').textContent =
+                `${day}/${month}/${year}`;
+            }
+
+            updateClock();
+            setInterval(updateClock, 1000);
+        </script>
+
+    </body>
+</html>

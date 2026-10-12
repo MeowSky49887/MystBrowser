@@ -1,0 +1,8 @@
+{
+  "enable": true,
+  "positionX": 2000,
+  "positionY": 100,
+  "sizeW": 400,
+  "sizeH": 240,
+  "attach": "Desktop"
+}

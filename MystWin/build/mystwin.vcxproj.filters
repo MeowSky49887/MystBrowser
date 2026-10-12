@@ -13,19 +13,22 @@
     <Filter Include="..\src">
       <UniqueIdentifier>{F1003AD6-4B6D-45DF-3F56-5CAC869BF55E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="E:">
-      <UniqueIdentifier>{97E1A3A8-7FAC-1DB5-E5B7-486D2EFD27A1}</UniqueIdentifier>
+    <Filter Include="D:">
+      <UniqueIdentifier>{86BBDC71-6ACD-FBEF-2BDD-D703B16582D3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="E:\MystBrowser">
+    <Filter Include="D:\GitHub">
+      <UniqueIdentifier>{27D7D49F-FF77-2E2C-F568-674177F3BDA3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D:\GitHub\MystBrowser">
       <UniqueIdentifier>{23D05361-739B-9D65-D91A-B5593337C59C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="E:\MystBrowser\node_modules">
+    <Filter Include="D:\GitHub\MystBrowser\node_modules">
       <UniqueIdentifier>{126A39EA-1D28-5689-C126-0DA0AB5837A0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="E:\MystBrowser\node_modules\node-gyp">
+    <Filter Include="D:\GitHub\MystBrowser\node_modules\node-gyp">
       <UniqueIdentifier>{49558BB4-6D34-CA91-A65D-85A65792DC11}</UniqueIdentifier>
     </Filter>
-    <Filter Include="E:\MystBrowser\node_modules\node-gyp\src">
+    <Filter Include="D:\GitHub\MystBrowser\node_modules\node-gyp\src">
       <UniqueIdentifier>{F1003AD6-4B6D-45DF-3F56-5CAC869BF55E}</UniqueIdentifier>
     </Filter>
     <Filter Include="..">
@@ -39,8 +42,8 @@
     <ClCompile Include="..\src\mystwin.cc">
       <Filter>..\src</Filter>
     </ClCompile>
-    <ClCompile Include="E:\MystBrowser\node_modules\node-gyp\src\win_delay_load_hook.cc">
-      <Filter>E:\MystBrowser\node_modules\node-gyp\src</Filter>
+    <ClCompile Include="D:\GitHub\MystBrowser\node_modules\node-gyp\src\win_delay_load_hook.cc">
+      <Filter>D:\GitHub\MystBrowser\node_modules\node-gyp\src</Filter>
     </ClCompile>
     <None Include="..\binding.gyp">
       <Filter>..</Filter>

@@ -24,12 +24,6 @@ function createTargetWindow() {
         skipTaskbar: true,
         backgroundMaterial: "none",
         backgroundColor: "rgba(0, 0, 0, 0)",
-        webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
-            contextIsolation: true,
-            enableRemoteModule: false,
-            nodeIntegration: false
-        }
     }); 
 
     newWindow.setMenuBarVisibility(false);
@@ -45,22 +39,41 @@ function createWidgetWindows() {
     entries.forEach(([index, widgetData], _) => {
         try {
             if (widgetData.enable && !widgetsMapping[index]) {
-                let view = new WebContentsView();
-                view.webContents.loadFile(path.join(widgetData.folder, "index.html"));
+                let view = new WebContentsView({
+                    webPreferences: {
+                        preload: path.join(__dirname, 'api.js'),
+                        contextIsolation: true,
+                        enableRemoteModule: false,
+                        nodeIntegration: false
+                    }
+                });
+
+                const entry = getWidgetEntry(widgetData.folder);
+
+                if (!entry) return;
+
+                if (entry.type === "html") {
+                    view.webContents.loadFile(entry.path);
+                } else {
+                    view.webContents.loadURL(entry.url);
+                }
+                
                 view.setBackgroundColor("rgba(0, 0, 0, 0)");
+
+                // view.webContents.openDevTools();
 
                 let win = createTargetWindow();
                 
                 if (win != null) {
+
+                    MystWin.moveWindow(win, widgetData.positionX, widgetData.positionY);
+                    MystWin.resizeWindow(win, widgetData.sizeW, widgetData.sizeH);
+
                     MystWin[{
                         "Wallpaper": "attachAsWallpaper",
                         "Desktop": "attachAsDesktop",
                         "Top": "attachToTop"
                     }[widgetData.attach] || "detachWindow"](win);
-
-                    
-                    MystWin.moveWindow(win, widgetData.positionX, widgetData.positionY);
-                    MystWin.resizeWindow(win, widgetData.sizeW, widgetData.sizeH);
 
                     win.contentView.addChildView(view);
 
@@ -114,23 +127,73 @@ function parseRectJSON(filePath) {
 }
 
 function validateDir(fullPath) {
-    let files = fs.readdirSync(fullPath);
-    if (!files.includes("index.html")) return null;
-    if (!files.includes("rect.json")) return null;
-    let rectData = parseRectJSON(path.join(fullPath, "rect.json"));
-    return rectData;
+    if (!fs.statSync(fullPath).isDirectory()) return null;
+    if (!getWidgetEntry(fullPath)) return null;
+
+    return parseRectJSON(path.join(fullPath, "rect.json"));
+}
+
+function getWidgetEntry(fullPath) {
+    const htmlPath = path.join(fullPath, "index.html");
+    const urlPath = path.join(fullPath, "index.url");
+
+    // Prefer index.html if it exists
+    if (fs.existsSync(htmlPath) && fs.statSync(htmlPath).isFile()) {
+        return {
+            type: "html",
+            path: htmlPath
+        };
+    }
+
+    // Otherwise, read the Internet Shortcut file
+    if (fs.existsSync(urlPath) && fs.statSync(urlPath).isFile()) {
+        try {
+            const content = fs.readFileSync(urlPath, "utf8");
+
+            const match = content.match(/^\s*URL\s*=\s*(.+?)\s*$/im);
+            if (!match) {
+                console.error("No URL= entry found in:", urlPath);
+                return null;
+            }
+
+            const url = match[1].trim();
+            const parsed = new URL(url);
+
+            if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+                console.error("Unsupported URL protocol:", url);
+                return null;
+            }
+
+            return {
+                type: "url",
+                url
+            };
+        } catch (error) {
+            console.error("Failed to read index.url:", urlPath, error);
+            return null;
+        }
+    }
+
+    return null;
 }
 
 function loadWidgets() {
     try {
-        let dir = path.join(exeDir, 'widgets');
-        let result = {};
-        let items = fs.readdirSync(dir, { withFileTypes: true });
-        for (let item of items) {
+        const dir = path.join(exeDir, "widgets");
+        const result = {};
+
+        fs.mkdirSync(dir, { recursive: true });
+
+        const items = fs.readdirSync(dir, { withFileTypes: true });
+
+        for (const item of items) {
             if (!item.isDirectory()) continue;
-            let fullPath = path.join(dir, item.name);
-            let rectData = validateDir(fullPath);
-            if (rectData == null) continue;
+
+            const fullPath = path.join(dir, item.name);
+            const rectData = validateDir(fullPath);
+
+            if (!rectData) continue;
+
             result[item.name] = {
                 folder: fullPath,
                 enable: rectData.enable,
@@ -141,9 +204,10 @@ function loadWidgets() {
                 attach: rectData.attach
             };
         }
+
         return result;
     } catch (e) {
-        console.error('Error loading widgets:', e);
+        console.error("Error loading widgets:", e);
         return {};
     }
 }

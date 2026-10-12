@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4C92B327-9B01-C266-9946-0C422DCE91FF}</ProjectGuid>
+    <ProjectGuid>{4A829FDB-A72F-7EFE-A16E-F35096AB1141}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>mystwin</RootNamespace>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
@@ -48,7 +48,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\include\node;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\src;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\openssl\config;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\openssl\openssl\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\uv\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\zlib;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\v8\include;E:\MystBrowser\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\include\node;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\src;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\openssl\config;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\openssl\openssl\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\uv\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\zlib;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\v8\include;D:\GitHub\MystBrowser\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/Zc:__cplusplus -std:c++20 /Zm2000 %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck>true</BufferSecurityCheck>
@@ -72,7 +72,7 @@
       <AdditionalOptions>/LTCG:INCREMENTAL %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;delayimp.lib;&quot;C:\\Users\\MeowSky\\AppData\\Local\\node-gyp\\Cache\\25.2.1\\x64\\node.lib&quot;;dwmapi.lib;uxtheme.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;delayimp.lib;&quot;C:\\Users\\MeowSky\\AppData\\Local\\node-gyp\\Cache\\22.22.2\\x64\\node.lib&quot;;dwmapi.lib;uxtheme.lib</AdditionalDependencies>
       <AdditionalOptions>/LTCG:INCREMENTAL /ignore:4199 %(AdditionalOptions)</AdditionalOptions>
       <DelayLoadDLLs>node.exe;%(DelayLoadDLLs)</DelayLoadDLLs>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -84,13 +84,13 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\include\node;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\src;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\openssl\config;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\openssl\openssl\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\uv\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\zlib;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\v8\include;E:\MystBrowser\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\include\node;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\src;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\openssl\config;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\openssl\openssl\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\uv\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\zlib;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\v8\include;D:\GitHub\MystBrowser\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=mystwin;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;_GLIBCXX_USE_CXX11_ABI=1;_FILE_OFFSET_BITS=64;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;NOMINMAX;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;UNICODE;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;DEBUG;_DEBUG;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\include\node;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\src;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\openssl\config;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\openssl\openssl\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\uv\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\zlib;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\v8\include;E:\MystBrowser\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\include\node;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\src;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\openssl\config;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\openssl\openssl\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\uv\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\zlib;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\v8\include;D:\GitHub\MystBrowser\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/Zc:__cplusplus -std:c++20 /Zm2000 %(AdditionalOptions)</AdditionalOptions>
       <BufferSecurityCheck>true</BufferSecurityCheck>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
@@ -117,7 +117,7 @@
       <AdditionalOptions>/LTCG:INCREMENTAL %(AdditionalOptions)</AdditionalOptions>
     </Lib>
     <Link>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;delayimp.lib;&quot;C:\\Users\\MeowSky\\AppData\\Local\\node-gyp\\Cache\\25.2.1\\x64\\node.lib&quot;;dwmapi.lib;uxtheme.lib</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;delayimp.lib;&quot;C:\\Users\\MeowSky\\AppData\\Local\\node-gyp\\Cache\\22.22.2\\x64\\node.lib&quot;;dwmapi.lib;uxtheme.lib</AdditionalDependencies>
       <AdditionalOptions>/LTCG:INCREMENTAL /ignore:4199 %(AdditionalOptions)</AdditionalOptions>
       <DelayLoadDLLs>node.exe;%(DelayLoadDLLs)</DelayLoadDLLs>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -129,7 +129,7 @@
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\include\node;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\src;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\openssl\config;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\openssl\openssl\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\uv\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\zlib;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\25.2.1\deps\v8\include;E:\MystBrowser\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\include\node;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\src;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\openssl\config;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\openssl\openssl\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\uv\include;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\zlib;C:\Users\MeowSky\AppData\Local\node-gyp\Cache\22.22.2\deps\v8\include;D:\GitHub\MystBrowser\node_modules\node-addon-api;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NODE_GYP_MODULE_NAME=mystwin;USING_UV_SHARED=1;USING_V8_SHARED=1;V8_DEPRECATION_WARNINGS=1;_GLIBCXX_USE_CXX11_ABI=1;_FILE_OFFSET_BITS=64;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_HAS_EXCEPTIONS=0;NOMINMAX;OPENSSL_NO_PINSHARED;OPENSSL_THREADS;UNICODE;BUILDING_NODE_EXTENSION;HOST_BINARY=&quot;node.exe&quot;;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
@@ -143,11 +143,11 @@
     <ClCompile Include="..\src\mystwin.cc">
       <ObjectFileName>$(IntDir)\src\mystwin.obj</ObjectFileName>
     </ClCompile>
-    <ClCompile Include="E:\MystBrowser\node_modules\node-gyp\src\win_delay_load_hook.cc"/>
+    <ClCompile Include="D:\GitHub\MystBrowser\node_modules\node-gyp\src\win_delay_load_hook.cc"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\node_modules\node-addon-api\nothing.vcxproj">
-      <Project>{501E52B5-4EBC-ACC7-4ECC-C45E6ECE5646}</Project>
+      <Project>{337AA44C-10CD-FF72-EEC0-D5767D29B556}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

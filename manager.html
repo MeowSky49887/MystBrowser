@@ -8,7 +8,7 @@
 
         <link href="./libs/tailwind.custom.css" rel="stylesheet" type="text/css" />
 
-        <link href="./libs/overlayscrollbars.css" rel="stylesheet" type="text/css" />
+        <link href="./libs/overlayscrollbars.min.css" rel="stylesheet" type="text/css" />
         <script src="./libs/overlayscrollbars.browser.es6.min.js" defer></script>
 
         <style>
@@ -26,22 +26,6 @@
                 font-family: 'Material Symbols Outlined';
                 font-style: normal;
                 src: url('./libs/MaterialSymbolsOutlined.ttf') format('truetype');
-            }
-
-            .tab::before {
-                --radius-start: radial-gradient(circle at top left, var(--tab-radius-grad)) !important; --radius-end: radial-gradient(circle at top right, var(--tab-radius-grad)) !important;
-            }
-
-            .tab {
-                transition: transform 160ms cubic-bezier(.2,.8,.2,1);
-                will-change: transform;
-            }
-
-            .tab.dragging {
-                position: absolute;
-                top: 0;
-                pointer-events: none;
-                z-index: 1000;
             }
 
             .material-symbols-outlined {
@@ -62,12 +46,14 @@
     <body class="bg-base-300 text-base-content flex flex-col items-center justify-center p-0 m-0 overflow-hidden">
         <!-- Navigation Bar -->
         <div class="w-full! h-[40px]! flex items-center px-4 space-x-2 bg-base-200 shadow-md">
-            <button class="btn btn-sm btn-ghost" onclick="window.electronAPI.manageWidgets(false)"><span class="material-symbols-outlined">menu</span></button>
+            <button class="btn btn-sm btn-ghost" onclick="window.electronAPI.refreshWidget()"><span class="material-symbols-outlined">refresh</span></button>
             <button class="btn btn-sm btn-ghost" onclick="window.electronAPI.uploadWidget()"><span class="material-symbols-outlined">drive_folder_upload</span></button>
         </div>
 
-        <div id="list" class="w-screen h-[calc(100vh-40px)] px-12 py-8 overflow-y-auto relative bg-base-300 flex flex-col" data-overlayscrollbars-y>
+        <div data-overlayscrollbars-y class="w-screen h-[calc(100vh-40px)] px-12 py-8 bg-base-300">
+            <scroll id="list" class="w-fit h-fit relative flex flex-col">
 
+            </scroll>
         </div>
 
         <template>
@@ -209,8 +195,8 @@
                     {
                         overflow: {},
                         update: {
-                            elementEvents: [['textarea', 'input']],
-                            debounce: [0, 0]
+                            elementEvents: [['textarea', 'input'], ['scroll', 'resize']],
+                            debounce: 200 
                         }
                     }
                 );
@@ -222,8 +208,8 @@
                     {
                         overflow: { y: "hidden" },
                         update: {
-                            elementEvents: [['textarea', 'input']],
-                            debounce: [0, 0]
+                            elementEvents: [['textarea', 'input'], ['scroll', 'resize']],
+                            debounce: 200 
                         }
                     }
                 );
@@ -235,8 +221,8 @@
                     {
                         overflow: { x: "hidden" },
                         update: {
-                            elementEvents: [['textarea', 'input']],
-                            debounce: [0, 0]
+                            elementEvents: [['textarea', 'input'], ['scroll', 'resize']],
+                            debounce: 200 
                         }
                     }
                 );
