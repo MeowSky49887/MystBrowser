@@ -2296,9 +2296,6 @@
   .h-fit {
     height: fit-content;
   }
-  .w-fit {
-    width: fit-content;
-  }
   .w-full {
     width: 100%;
   }
@@ -2433,6 +2430,20 @@
     --tw-blur: blur(8px);
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
+  .btn-lg {
+    @layer daisyui.l1.l2 {
+      --fontsize: 1.125rem;
+      --btn-p: 1.25rem;
+      --size: calc(var(--size-field, 0.25rem) * 12);
+    }
+  }
+  .btn-lg {
+    @layer daisyui.l1.l2 {
+      --fontsize: 1.125rem;
+      --btn-p: 1.25rem;
+      --size: calc(var(--size-field, 0.25rem) * 12);
+    }
+  }
   .btn-md {
     @layer daisyui.l1.l2 {
       --fontsize: 0.875rem;
@@ -2483,6 +2494,18 @@
     @layer daisyui.l1.l2.l3 {
       --btn-color: var(--color-info);
       --btn-fg: var(--color-info-content);
+    }
+  }
+  .btn-primary {
+    @layer daisyui.l1.l2.l3 {
+      --btn-color: var(--color-primary);
+      --btn-fg: var(--color-primary-content);
+    }
+  }
+  .btn-primary {
+    @layer daisyui.l1.l2.l3 {
+      --btn-color: var(--color-primary);
+      --btn-fg: var(--color-primary-content);
     }
   }
 }

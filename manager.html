@@ -46,13 +46,13 @@
     <body class="bg-base-300 text-base-content flex flex-col items-center justify-center p-0 m-0 overflow-hidden">
         <!-- Navigation Bar -->
         <div class="w-full! h-[40px]! flex items-center px-4 space-x-2 bg-base-200 shadow-md">
-            <button class="btn btn-sm btn-ghost" onclick="window.electronAPI.refreshWidget()"><span class="material-symbols-outlined">refresh</span></button>
-            <button class="btn btn-sm btn-ghost" onclick="window.electronAPI.uploadWidget()"><span class="material-symbols-outlined">drive_folder_upload</span></button>
+            <button class="btn btn-sm btn-ghost" onclick="window.electronAPI.refreshWidget()" title="Refresh Widgets List"><span class="material-symbols-outlined">refresh</span></button>
+            <button class="btn btn-sm btn-ghost" onclick="window.electronAPI.uploadWidget()" title="Upload Widget"><span class="material-symbols-outlined">drive_folder_upload</span></button>
         </div>
 
         <div data-overlayscrollbars-y class="w-screen h-[calc(100vh-40px)] px-12 py-8 bg-base-300">
-            <scroll id="list" class="w-fit h-fit relative flex flex-col">
-
+            <scroll id="list" class="w-full h-fit relative flex flex-col">
+                <div class="w-full h-fit flex items-center justify-center"><button class="btn btn-lg btn-primary" onclick="window.electronAPI.uploadWidget()">Upload Widget</button></div>
             </scroll>
         </div>
 
@@ -116,7 +116,7 @@
                         if (!widget) {
                             widget = document.createElement("details");
                             widget.id = `Widget-${id}`;
-                            widget.className = "collapse collapse-close collapse-arrow bg-base-100 border-base-300 border w-full h-fit";
+                            widget.className = "collapse collapse-close collapse-arrow bg-base-100 border-base-300 w-full h-fit";
 
                             let title = document.createElement("summary");
                             title.innerText = dict["folder"];
@@ -176,7 +176,7 @@
                         }
                     });
                 } else {
-                    widgetsList.innerHTML = "";
+                    widgetsList.innerHTML = `<div class="w-full h-fit flex items-center justify-center"><button class="btn btn-lg btn-primary" onclick="window.electronAPI.uploadWidget()">Upload Widget</button></div>`;
                 }
             });
         </script>
