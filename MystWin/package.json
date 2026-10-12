@@ -1,0 +1,15 @@
+{
+  "name": "mystwin",
+  "description": "Node module that allows you to modify a bunch of window's properties in Windows.",
+  "main": "lib/mystwin.js",
+  "gypfile": true,
+  "keywords": [
+    "window",
+    "windows",
+    "electron"
+  ],
+  "author": "MeowSkyKung",
+  "os": [
+    "win32"
+  ]
+}

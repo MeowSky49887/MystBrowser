@@ -41,7 +41,7 @@ function createWidgetWindows() {
             if (widgetData.enable && !widgetsMapping[index]) {
                 let view = new WebContentsView({
                     webPreferences: {
-                        preload: path.join(__dirname, 'api.js'),
+                        // preload: path.join(__dirname, 'api.js'),
                         contextIsolation: true,
                         enableRemoteModule: false,
                         nodeIntegration: false

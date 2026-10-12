@@ -23,7 +23,8 @@ Start-Process -NoNewWindow -Wait -FilePath "cmd.exe" -ArgumentList @(
     "--out=$distFolder",
     "--overwrite",
     "--executable-name=MystBrowser",
-    "--icon=MystBrowser.ico"
+    "--icon=MystBrowser.ico",
+    "--asar.unpack=""**/*.{node,dll}"""
 ) -PassThru
 
 $oldPath = "$distFolder/MystBrowser-win32-x64"

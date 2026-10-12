@@ -1,0 +1,17 @@
+{
+  "name": "icon-extractor",
+  "description": "Node module that allows you to extract a icon from file in Windows.",
+  "main": "lib/icon-extractor.js",
+  "gypfile": true,
+  "keywords": [
+    "icon",
+    "file",
+    "windows",
+    "desktop"
+  ],
+  "author": "MeowSkyKung",
+  "license": "ISC",
+  "os": [
+    "win32"
+  ]
+}

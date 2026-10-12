@@ -2,7 +2,7 @@ let { app, ipcMain, nativeTheme, BrowserWindow, Tray } = require('electron');
 let path = require('path');
 
 let Widgets = require("./widget");
-let Processer = require("./processer");
+// let Processer = require("./processer");
 
 let manager;
 let tray;
@@ -62,7 +62,7 @@ app.whenReady().then(() => {
     ipcMain.on('destroy-widget', (event, { index }) => {Widgets.destroyWidget(index)});
     ipcMain.on('upload-widget', (event) => {Widgets.uploadWidgets()});
 
-    ipcMain.handle('run-exe', async (event, {path, args}) => {return Processer.runExe(path, args)});
-    ipcMain.handle('get-system', async () => {return Processer.getSystem()});
-    ipcMain.handle('get-file-icon', async (event, {path}) => {return Processer.getFileIcon(path)});
+    // ipcMain.handle('run-exe', async (event, {path, args}) => {return Processer.runExe(path, args)});
+    // ipcMain.handle('get-system', async () => {return Processer.getSystem()});
+    // ipcMain.handle('get-file-icon', async (event, {path}) => {return Processer.getFileIcon(path)});
 });
